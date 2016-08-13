@@ -1,0 +1,15 @@
+{
+  "name": "playground-docker-buildkite",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "start": "echo tbi",
+    "test": "npm run test:lint && npm run test:node",
+    "test:lint": "standard",
+    "test:node": "echo tbi"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "standard": "^7.1.2"
+  }
+}

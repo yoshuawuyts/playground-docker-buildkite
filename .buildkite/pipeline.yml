@@ -1,0 +1,7 @@
+steps:
+  - name: ":docker: build"
+    command: docker build .
+  - name: ":docker: list"
+    command: docker images list
+  - name: ":node: test"
+    command: "npm test"
