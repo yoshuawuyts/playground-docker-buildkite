@@ -10,6 +10,18 @@ Testing out buildkite.
 - semantically tag containers
 - release to docker hub for successful builds on master
 
+## Routes
+The following HTTP routes are available:
+```txt
+/   GET   get a test response
+```
+
+## Variables
+The following environment variables can be passed:
+```txt
+PORT   defaults to 8080, set the HTTP server port
+```
+
 ## Usage
 This repository is a member of the [module party](http://module.party/):
 ```txt
@@ -29,18 +41,6 @@ latest        the latest optimized image
 base          the latest base image
 x.y.z         an optimized image at version x.y.z
 x.y.z-base    an base image at version x.y.z
-```
-
-## Variables
-The following environment variables can be passed:
-```txt
-PORT   defaults to 8080, set the HTTP server port
-```
-
-## Routes
-The following HTTP routes are available:
-```txt
-/   GET   get a test response
 ```
 
 ## Installation
