@@ -2,14 +2,13 @@
 
 version="$(jq '.version' < package.json | sed 's/"//g')"
 commit="$(git log --oneline | head -1 | awk '{ print $1 }')"
-name="playground-docker-image-buildkite"
+name="playground-docker-buildkite"
 date="$(date --iso-8601=seconds)"
 username="yoshuawuyts"
 
 run_build () {
-  sudo docker build \
-    -t "$name:dev" \
-    -t "$name:$version" \
+  sudo docker build -f "./docker/base/Dockerfile" \
+    -t "$name:base" \
     --label "date=$date" \
     --label "commit=$commit" \
     --label "dockerfile=Dockerfile" \
@@ -18,8 +17,9 @@ run_build () {
 }
 
 run_optimize () {
-  sudo docker build \
+  sudo docker build -f "./docker/optimize/Dockerfile" \
     -t "$name:latest" \
+    -t "$name:optimize" \
     -t "$name:$version" \
     --label "date=$date" \
     --label "commit=$commit" \
@@ -34,7 +34,7 @@ usage () {
 
 # set CLI flags
 args="$(getopt ho "$*")"
-[ ! $? -eq 0 ] && { usage && exit 2; }
+[ $? -ne 0 ] && { usage; exit 2; }
 eval set -- "$args"
 
 # parse CLI flags
