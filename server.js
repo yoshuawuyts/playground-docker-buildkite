@@ -1,5 +1,7 @@
 const http = require('http')
 
+const port = process.env.PORT || 8080
+
 http.createServer((req, res) => {
   res.end('oi mate')
-}).listen(8080)
+}).listen(port)
