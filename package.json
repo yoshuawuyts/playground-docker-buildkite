@@ -3,7 +3,7 @@
   "version": "1.0.1",
   "private": true,
   "scripts": {
-    "start": "echo tbi",
+    "start": "node server.js",
     "test": "npm run test:lint && npm run test:node",
     "test:lint": "standard",
     "test:node": "echo tbi"
