@@ -2,11 +2,11 @@ steps:
   - name: ":ubuntu: setup"
     command: apt-get install jq
   - wait
-  - name: ":docker: build:dev"
+  - name: ":docker: build:base"
     command: script/build
   - wait
   - name: ":node: test"
-    command: sudo docker run 'playground-docker-image-buildkite:dev' npm test
+    command: sudo docker run 'playground-docker-buildkite:base' npm test
   - wait
   - name: ":docker: build:optimize"
     command: script/build -o
