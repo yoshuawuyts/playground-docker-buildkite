@@ -28,12 +28,21 @@ run_optimize () {
     .
 }
 
+run_publish () {
+  docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
+  docker push "$name:latest"
+  docker push "$name:base"
+  docker push "$name:$version"
+  docker push "$name:$version-dev"
+  docker logout
+}
+
 usage () {
   printf 'Usage: script/build [options]'
 }
 
 # set CLI flags
-args="$(getopt ho "$*")"
+args="$(getopt pho "$*")"
 [ $? -ne 0 ] && { usage; exit 2; }
 eval set -- "$args"
 
@@ -42,6 +51,7 @@ while true; do
   case "$1" in
     -h ) usage ;;
     -o ) shift; run_optimize; break ;;
+    -p ) shift; run_publish; break ;;
     * ) shift; run_build; break ;;
   esac
 done
