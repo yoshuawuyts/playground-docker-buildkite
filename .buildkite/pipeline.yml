@@ -7,7 +7,7 @@ steps:
   - wait
   - name: ":buildkite: meta"
     command: >
-      version=$(jq '.version' < package.json | sed 's/"//g');
+      version=$(jq -r '.version' < package.json);
       buildkite-agent meta-data set version-dev "$version";
   - wait
   - name: ":node: test"
@@ -25,5 +25,5 @@ steps:
   - wait
   - name: ":buildkite: meta"
     command: >
-      version=$(jq '.version' < package.json | sed 's/"//g');
+      version=$(jq -r '.version' < package.json);
       buildkite-agent meta-data set version "$version";
