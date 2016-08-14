@@ -1,4 +1,4 @@
-FROM playground-docker-buildkite:base
+FROM yoshuawuyts/playground-docker-buildkite:base
 
 # Create app directory
 WORKDIR /usr/src/app

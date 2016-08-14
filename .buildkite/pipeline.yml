@@ -6,7 +6,18 @@ steps:
     command: script/build
   - wait
   - name: ":node: test"
-    command: sudo docker run 'playground-docker-buildkite:base' npm test
+    command: >
+      sudo docker run 'yoshuawuyts/playground-docker-buildkite:base' npm test
   - wait
   - name: ":docker: build:optimize"
     command: script/build -o
+  - wait
+  - name: ":docker: release"
+    branches: "master"
+    command: >
+      docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
+      docker push yoshuawuyts/playground-docker-buildkite:latest;
+      docker push yoshuawuyts/playground-docker-buildkite:base;
+      docker push yoshuawuyts/playground-docker-buildkite:"$(jq '.version' < package.json | sed 's/"//g')";
+      docker push yoshuawuyts/playground-docker-buildkite:"$(jq '.version' < package.json | sed 's/"//g')"-base;
+      docker logout

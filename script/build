@@ -2,7 +2,7 @@
 
 version="$(jq '.version' < package.json | sed 's/"//g')"
 commit="$(git log --oneline | head -1 | awk '{ print $1 }')"
-name="playground-docker-buildkite"
+name="yoshuawuyts/playground-docker-buildkite"
 date="$(date --iso-8601=seconds)"
 username="yoshuawuyts"
 
