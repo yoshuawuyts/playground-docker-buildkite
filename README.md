@@ -3,6 +3,12 @@
 
 Testing out buildkite.
 
+## Features
+- create development and production docker images
+- run tests inside container
+- semantically tag containers
+- release to docker hub for successful builds on master
+
 ## Usage
 This repository is a member of the [module party](http://module.party/):
 ```txt
