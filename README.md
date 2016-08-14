@@ -1,4 +1,5 @@
 # playground-docker-buildkite [![stability][0]][1]
+[![docker hub][2]][3]
 [![js-standard-style][10]][11]
 
 Testing out buildkite.
@@ -28,7 +29,7 @@ x.y.z-base    an base image at version x.y.z
 
 ## Installation
 ```sh
-$ git clone git@github.com:yoshuawuyts/playground-docker-buildkite.git
+$ docker pull yoshuawuyts/playground-docker-buildkite:latest
 ```
 
 ## License
@@ -38,5 +39,7 @@ $ git clone git@github.com:yoshuawuyts/playground-docker-buildkite.git
 [semver]: http://semver.org/
 [0]: https://img.shields.io/badge/stability-experimental-orange.svg?style=flat-square
 [1]: https://nodejs.org/api/documentation.html#documentation_stability_index
+[2]: https://img.shields.io/badge/docker-ok-blue.svg?style=flat-square
+[3]: https://hub.docker.com/r/yoshuawuyts/playground-docker-buildkite/tags/
 [10]: https://img.shields.io/badge/code%20style-standard-brightgreen.svg?style=flat-square
 [11]: https://github.com/feross/standard

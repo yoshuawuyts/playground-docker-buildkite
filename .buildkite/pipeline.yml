@@ -5,9 +5,16 @@ steps:
   - name: ":docker: build:base"
     command: script/build
   - wait
+  - name: ":buildkite: meta"
+    command: >
+      version=$(jq '.version' < package.json | sed 's/"//g');
+      buildkite-agent meta-data set version-dev "$version";
+  - wait
   - name: ":node: test"
     command: >
-      sudo docker run 'yoshuawuyts/playground-docker-buildkite:base' npm test
+      sudo docker run 'yoshuawuyts/playground-docker-buildkite:base' npm test;
+      if [ $? -eq 0 ]; then buildkite-agent meta-data set status 'passed'
+      else; buildkite-agent meta-data set status 'failed'; fi
   - wait
   - name: ":docker: build:optimize"
     command: script/build -o
@@ -15,3 +22,8 @@ steps:
   - name: ":docker: release"
     branches: "master"
     command: script/build -p
+  - wait
+  - name: ":buildkite: meta"
+    command: >
+      version=$(jq '.version' < package.json | sed 's/"//g');
+      buildkite-agent meta-data set version "$version";
