@@ -28,6 +28,11 @@ run_optimize () {
     .
 }
 
+clean_untagged () {
+  printf '[script/build] cleaning untagged containers\n'
+  sudo docker rmi "$(sudo docker images | grep "^<none>" | awk '{ print $3 }')"
+}
+
 run_publish () {
   docker login --username="$DOCKER_USERNAME" --password="$DOCKER_PASSWORD";
   docker push "$name:latest"
