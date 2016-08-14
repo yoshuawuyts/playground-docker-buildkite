@@ -9,6 +9,7 @@ username="yoshuawuyts"
 run_build () {
   sudo docker build -f "./docker/base/Dockerfile" \
     -t "$name:base" \
+    -t "$name:$version-base" \
     --label "date=$date" \
     --label "commit=$commit" \
     --label "dockerfile=Dockerfile" \
@@ -19,7 +20,6 @@ run_build () {
 run_optimize () {
   sudo docker build -f "./docker/optimize/Dockerfile" \
     -t "$name:latest" \
-    -t "$name:optimize" \
     -t "$name:$version" \
     --label "date=$date" \
     --label "commit=$commit" \
